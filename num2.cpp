@@ -2,37 +2,58 @@
 
 using namespace std;
 
+string N, X, Y;
+int n, x, y;
+
+int getNumFromArray(string array[]) {
+    int rtn = 0;
+    int mul = 1;
+    for (int i = (int) N.length() - 1; i >= 0; i--) {
+        rtn += stoi(array[i]) * mul;
+        mul *= 10;
+    }
+    return rtn;
+}
+
 int main() {
     int T;
     cin >> T;
 
     for (int t = 1; t <= T; t++) {
-        int N, x, y;
-        cin >> N >> x >> y;
-        cout << "#" << t << " ";
+        cin >> N >> X >> Y;
+        string result[N.length()];
 
-        if (N < x || N < y) {
-            cout << -1 << endl;
+        n = stoi(N);
+        x = stoi(X);
+        y = stoi(Y);
+
+        if (n < x || n < y) {
+            cout << "#" << t << " " << -1 << endl;
             continue;
         }
 
-        int result;
+        for (int i = 0; i < N.length(); i++) { result[i] = X; }
 
-        for (int i = 0; i <= N; i++) {
-            int n = i;
-            while (n > 0) {
-                int d = n % 10;
-                if (d != x && d != y) {
-                    goto next;
+        for (int i = 0; i < N.length(); i++) {
+            if (i == 0){
+                if (stoi(result[0]) < x ){
+                    result[0] = "0";
+                    continue;
                 }
-                n /= 10;
             }
-            result = i;
-            next:;
-        }
-        cout << result << endl;
-    }
 
+            result[i] = Y;
+            if (n > getNumFromArray(result)) {
+                continue;
+            } else if (n == getNumFromArray(result)) {
+                break;
+            } else {
+                result[i] = X;
+            }
+        }
+
+        cout << "#" << t << " " << getNumFromArray(result) << endl;
+    }
 
     return 0;
 }
