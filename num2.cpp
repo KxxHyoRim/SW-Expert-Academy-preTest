@@ -4,7 +4,6 @@
 
 using namespace std;
 
-
 int getNumFromArray(vector<string> array, int size) {
     int rtn = 0;
     int mul = 1;
@@ -35,7 +34,7 @@ int main() {
         n = stoi(N);
         x = stoi(X);
 
-        if (n < x) {
+        if (n == x && x == 0 || n < x) {
             cout << "#" << t << " " << -1 << endl;
             continue;
         }
