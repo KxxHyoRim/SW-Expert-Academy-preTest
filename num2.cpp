@@ -33,7 +33,11 @@ int main() {
             } else if (target == x )
                 result.append(X);
             else if (target < y){
-                result.append(X);
+                if (i == 0 && x == 0){
+                    // do nothing
+                } else {
+                    result.append(X);
+                }
                 isFillWithMax = true;
                 sizeToFillMax = N.length() - (i + 1);
                 break;
