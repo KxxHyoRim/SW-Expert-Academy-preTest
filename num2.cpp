@@ -21,9 +21,9 @@ int main() {
         y = stoi(Y);
 
         bool isFillWithMax = false, isReset = false;
-        long long sizeToFillMax = 0;
+        int64_t sizeToFillMax = 0;
 
-        for (long long i = 0; i < N.length(); i++) {
+        for (int64_t i = 0; i < N.length(); i++) {
             int target = N[i] - '0';
 
             if (target < x){
@@ -50,13 +50,13 @@ int main() {
 
         if (isReset){
             result = "";
-            for (long long i = 0; i < sizeToFillMax; i++){
+            for (int64_t i = 0; i < sizeToFillMax; i++){
                 result.append(Y);
             }
         }
 
         if (isFillWithMax){
-            for (long long i = 0; i < sizeToFillMax; i++){
+            for (int64_t i = 0; i < sizeToFillMax; i++){
                 result.append(Y);
             }
         }
