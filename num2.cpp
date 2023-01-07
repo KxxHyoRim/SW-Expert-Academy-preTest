@@ -46,7 +46,7 @@ int main() {
 
         for (int i = 0; i < N.length(); i++) {
             if (i == 0) {
-                int firstNum = stoi(output[0]);
+                int firstNum = N[0] - '0';
                 if (firstNum < x) {
                     output[0] = "0";
                     continue;
