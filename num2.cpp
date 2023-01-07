@@ -26,14 +26,34 @@ int main() {
         for (int64_t i = 0; i < N.length(); i++) {
             int target = N[i] - '0';
 
-            if (target < x){
-                isReset = true;
-                sizeToFillMax = N.length() - 1;
+            if (target < x) {
+                if (target == 0) {
+                    isFillWithMax = true;
+                    int count = 0;
+                    while(result.back()-'0' == x){
+                        count++;
+                        result.pop_back();
+                    }
+                    if (result.back()-'0' == y){
+                        count++;
+                        result.pop_back();
+                    } else {
+                        isFillWithMax = false;
+                        isReset = true;
+                        sizeToFillMax = N.length() - 1;
+                        break;
+                    } // 5개 pop
+                    result.append(X);
+                    sizeToFillMax = N.length() - i + count;
+                } else {
+                    isReset = true;
+                    sizeToFillMax = N.length() - 1;
+                }
                 break;
-            } else if (target == x )
+            } else if (target == x)
                 result.append(X);
-            else if (target < y){
-                if (i == 0 && x == 0){
+            else if (target < y) {
+                if (i == 0 && x == 0) {
                     // do nothing
                 } else {
                     result.append(X);
@@ -41,8 +61,7 @@ int main() {
                 isFillWithMax = true;
                 sizeToFillMax = N.length() - (i + 1);
                 break;
-            }
-            else if (target == y)
+            } else if (target == y)
                 result.append(Y);
             else if (target > y) {
                 result.append(Y);
@@ -52,15 +71,15 @@ int main() {
             }
         }
 
-        if (isReset){
+        if (isReset) {
             result = "";
-            for (int64_t i = 0; i < sizeToFillMax; i++){
+            for (int64_t i = 0; i < sizeToFillMax; i++) {
                 result.append(Y);
             }
         }
 
-        if (isFillWithMax){
-            for (int64_t i = 0; i < sizeToFillMax; i++){
+        if (isFillWithMax) {
+            for (int64_t i = 0; i < sizeToFillMax; i++) {
                 result.append(Y);
             }
         }
@@ -73,3 +92,7 @@ int main() {
 
     return 0;
 }
+
+// 230 2 3 -> 223 나와야 하는데 33나왔음
+// 422220324 2 4
+// 222220324 2 4
