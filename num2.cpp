@@ -27,24 +27,18 @@ int main() {
             int target = N[i] - '0';
 
             if (target < x) {
-                if (target == 0) {
-                    isFillWithMax = true;
-                    int count = 0;
-                    while(!result.empty() && result.back()-'0' == x){
-                        count++;
-                        result.pop_back();
-                    }
-                    if (result.back() - '0' == y){
-                        result.pop_back();
-                        result.append(X);
-                        sizeToFillMax = N.length() - result.length();
-                    } else if (result.empty()) {
-                        isFillWithMax = false;
-                        isReset = true;
-                        sizeToFillMax = N.length() - 1;
-                    }
-                    break;
-                } else {
+                isFillWithMax = true;
+                int count = 0;
+                while (!result.empty() && result.back() - '0' == x) {
+                    count++;
+                    result.pop_back();
+                }
+                if (result.back() - '0' == y) {
+                    result.pop_back();
+                    result.append(X);
+                    sizeToFillMax = N.length() - result.length();
+                } else if (result.empty()) {
+                    isFillWithMax = false;
                     isReset = true;
                     sizeToFillMax = N.length() - 1;
                 }
@@ -97,3 +91,4 @@ int main() {
 // 222220324 2 4
 // 2022 1 2 -> 1222
 // 1022 1 2 -> 222
+// 553 4 5 -> 545 but 55
