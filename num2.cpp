@@ -1,18 +1,6 @@
 #include <iostream>
-#include <string>
-#include <vector>
 
 using namespace std;
-
-int getNumFromArray(vector<string> array, int size) {
-    int rtn = 0;
-    int mul = 1;
-    for (int i = size - 1; i >= 0; i--) {
-        rtn += stoi(array[i]) * mul;
-        mul *= 10;
-    }
-    return rtn;
-}
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -24,50 +12,52 @@ int main() {
 
     for (int t = 1; t <= T; t++) {
 
-        string N, X, Y;
-        vector<string> output;
-        int n, x, size;
+        string N, X, Y, result = "";
+        int x, y;
 
         cin >> N >> X >> Y;
 
-        size = N.length();
-        n = stoi(N);
         x = stoi(X);
+        y = stoi(Y);
 
-        if (n == x && x == 0 || n < x) {
-            cout << "#" << t << " " << -1 << endl;
-            continue;
-        }
+        bool isFillWithMax = false;
+        long long sizeToFillMax = 0;
 
-        for (int i = 0; i < N.length(); i++) {
-            output.push_back(X);
-            //output[i] = X;
-        }
+        for (long long i = 0; i < N.length(); i++) {
+            int target = N[i] - '0';
 
-        for (int i = 0; i < N.length(); i++) {
-            if (i == 0) {
-                int firstNum = N[0] - '0';
-                if (firstNum < x) {
-                    output[0] = "0";
-                    continue;
-                }
-            }
-
-            output[i] = Y;
-            if (n > getNumFromArray(output, size)) {
-                continue;
-            } else if (n == getNumFromArray(output, size)) {
+            if (target < x){
+                isFillWithMax = true;
+                sizeToFillMax = N.length() - (i + 1);
                 break;
-            } else {
-                output[i] = X;
+            } else if (target == x )
+                result.append(X);
+            else if (target < y){
+                result.append(X);
+                isFillWithMax = true;
+                sizeToFillMax = N.length() - (i + 1);
+                break;
+            }
+            else if (target == y)
+                result.append(Y);
+            else if (target > y) {
+                result.append(Y);
+                isFillWithMax = true;
+                sizeToFillMax = N.length() - (i + 1);
+                break;
             }
         }
 
-        int rtn = getNumFromArray(output, size);
-        if (rtn == 0)
+        if (isFillWithMax){
+            for (long long i = 0; i < sizeToFillMax; i++){
+                result.append(Y);
+            }
+        }
+
+        if (result == "0" || result.empty())
             cout << "#" << t << " -1\n";
         else
-            cout << "#" << t << " " << rtn << "\n";
+            cout << "#" << t << " " << result << "\n";
     }
 
     return 0;
