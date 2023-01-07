@@ -30,14 +30,14 @@ int main() {
                 if (target == 0) {
                     isFillWithMax = true;
                     int count = 0;
-                    while(result.back()-'0' == x){
+                    while(!result.empty() && result.back()-'0' == x){
                         count++;
                         result.pop_back();
                     }
-                    if (result.back()-'0' == y){
-                        count++;
+                    if (result.back() - '0' == y){
                         result.pop_back();
-                    } else {
+                        result.append(X);
+                    } else if (result.empty()) {
                         isFillWithMax = false;
                         isReset = true;
                         sizeToFillMax = N.length() - 1;
