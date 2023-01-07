@@ -20,15 +20,15 @@ int main() {
         x = stoi(X);
         y = stoi(Y);
 
-        bool isFillWithMax = false;
+        bool isFillWithMax = false, isReset = false;
         long long sizeToFillMax = 0;
 
         for (long long i = 0; i < N.length(); i++) {
             int target = N[i] - '0';
 
             if (target < x){
-                isFillWithMax = true;
-                sizeToFillMax = N.length() - (i + 1);
+                isReset = true;
+                sizeToFillMax = N.length() - 1;
                 break;
             } else if (target == x )
                 result.append(X);
@@ -45,6 +45,13 @@ int main() {
                 isFillWithMax = true;
                 sizeToFillMax = N.length() - (i + 1);
                 break;
+            }
+        }
+
+        if (isReset){
+            result = "";
+            for (long long i = 0; i < sizeToFillMax; i++){
+                result.append(Y);
             }
         }
 
