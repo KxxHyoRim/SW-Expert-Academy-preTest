@@ -1,4 +1,5 @@
 #include <iostream>
+#define ull unsigned long long
 
 using namespace std;
 
@@ -21,9 +22,9 @@ int main() {
         y = stoi(Y);
 
         bool isFillWithMax = false, isReset = false;
-        int64_t sizeToFillMax = 0;
+        ull sizeToFillMax = 0;
 
-        for (int64_t i = 0; i < N.length(); i++) {
+        for (ull i = 0; i < N.length(); i++) {
             int target = N[i] - '0';
 
             if (target < x) {
@@ -66,13 +67,13 @@ int main() {
 
         if (isReset) {
             result = "";
-            for (int64_t i = 0; i < sizeToFillMax; i++) {
+            for (ull i = 0; i < sizeToFillMax; i++) {
                 result.append(Y);
             }
         }
 
         if (isFillWithMax) {
-            for (int64_t i = 0; i < sizeToFillMax; i++) {
+            for (ull i = 0; i < sizeToFillMax; i++) {
                 result.append(Y);
             }
         }
