@@ -37,14 +37,13 @@ int main() {
                     if (result.back() - '0' == y){
                         result.pop_back();
                         result.append(X);
+                        sizeToFillMax = N.length() - result.length();
                     } else if (result.empty()) {
                         isFillWithMax = false;
                         isReset = true;
                         sizeToFillMax = N.length() - 1;
-                        break;
-                    } // 5개 pop
-                    result.append(X);
-                    sizeToFillMax = N.length() - i + count;
+                    }
+                    break;
                 } else {
                     isReset = true;
                     sizeToFillMax = N.length() - 1;
@@ -96,3 +95,5 @@ int main() {
 // 230 2 3 -> 223 나와야 하는데 33나왔음
 // 422220324 2 4
 // 222220324 2 4
+// 2022 1 2 -> 1222
+// 1022 1 2 -> 222
