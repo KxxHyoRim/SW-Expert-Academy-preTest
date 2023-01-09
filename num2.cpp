@@ -1,4 +1,5 @@
 #include <iostream>
+
 #define ull unsigned long long
 
 using namespace std;
@@ -21,12 +22,13 @@ int main() {
         x = stoi(X);
         y = stoi(Y);
 
-        bool isFillWithMax = false, isReset = false;
+        bool isFillWithMax = false;
         ull sizeToFillMax = 0;
 
         for (ull i = 0; i < N.length(); i++) {
             int target = N[i] - '0';
 
+            //  x 보다 작을 떄
             if (target < x) {
                 isFillWithMax = true;
                 int count = 0;
@@ -39,23 +41,28 @@ int main() {
                     result.append(X);
                     sizeToFillMax = N.length() - result.length();
                 } else if (result.empty()) {
-                    result.clear();
                     sizeToFillMax = N.length() - 1;
                 }
                 break;
-            } else if (target == x)
+            }
+
+                // x와 동일할 때
+            else if (target == x)
                 result.append(X);
+
+                // x 보다크고 y보다 작을 때
             else if (target < y) {
-                if (i == 0 && x == 0) {
-                    // do nothing
-                } else {
-                    result.append(X);
-                }
+                if (!(i == 0 && x == 0)) { result.append(X); }
                 isFillWithMax = true;
                 sizeToFillMax = N.length() - (i + 1);
                 break;
-            } else if (target == y)
+            }
+
+                // y와 동일할 때
+            else if (target == y)
                 result.append(Y);
+
+                // y보다 클 때
             else if (target > y) {
                 result.append(Y);
                 isFillWithMax = true;
