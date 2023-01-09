@@ -39,8 +39,7 @@ int main() {
                     result.append(X);
                     sizeToFillMax = N.length() - result.length();
                 } else if (result.empty()) {
-                    isFillWithMax = false;
-                    isReset = true;
+                    result.clear();
                     sizeToFillMax = N.length() - 1;
                 }
                 break;
@@ -62,13 +61,6 @@ int main() {
                 isFillWithMax = true;
                 sizeToFillMax = N.length() - (i + 1);
                 break;
-            }
-        }
-
-        if (isReset) {
-            result = "";
-            for (ull i = 0; i < sizeToFillMax; i++) {
-                result.append(Y);
             }
         }
 
